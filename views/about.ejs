@@ -1,0 +1,101 @@
+<% include partials/header %>
+
+<body>
+    
+<!-- Following Menu -->
+<div class="ui large top fixed hidden menu">
+  <div class="ui container">
+    <a href="/" class="item">Home</a>
+    <a href="/catalogue" class="active item">The Catalogue</a>
+    <a href="../about" class="item">About</a>
+    <div class="right menu">
+      
+    <% if(!currentUser) { %>
+      
+      <div class="item">
+        <a href="/login" class="ui button">Log in</a>
+      </div>
+      <div class="item">
+        <a href="/login" class="ui primary button">Sign Up</a>
+      </div>
+      
+  <% } else { %>
+      <div class="item">
+        <a href="/user/<%= currentUser._id %>" class="ui button">logged in as <%= currentUser.username %></a>
+        <a href="/logout" class="ui primary button">Log Out</a>
+      </div>
+      
+    <% } %>
+    </div>
+  </div>
+</div>
+
+<!-- Sidebar Menu -->
+<div class="ui vertical inverted sidebar menu">
+  <a href="/" class="item">Home</a>
+  <a href="/catalogue" class="active item">The Catalogue</a>
+  <a href="../about" class="item">About</a>
+  <% if(!currentUser) { %>
+  <a href="/login" class="item">Login</a>
+  <a href="/login" class="item">Signup</a>
+  <% } else { %>
+  <a href="/user/<%= currentUser._id %>" class="item">Profile Page</a>
+  <a href="/logout" class="item">Log Out</a>
+    <% } %>
+  
+</div>
+
+
+<!-- Page Contents -->
+<div class="pusher">
+    <!-- menu and banner -->
+    <div class="ui inverted vertical masthead center aligned segment">
+
+    <div class="ui container">
+      <div class="ui large secondary inverted pointing menu">
+        <a class="toc item">
+          <i class="sidebar icon"></i>
+        </a>
+        <a href="/" class="item">Home</a>
+        <a href="/catalogue" class="active item">The Catalogue</a>
+        <a href="../about" class="item">About</a>
+        <div class="right item">
+          
+          <% if(!currentUser) { %>
+            <a href="/login" class="ui inverted button">Log in</a>
+            <a href="/register" class="ui inverted button">Sign Up</a>
+          <% } else { %>
+            <a href="/user/<%= currentUser._id %>" class="ui inverted button">logged in as <%= currentUser.username %></a>
+            <a href="/logout" class="ui inverted button">Log Out</a>
+          <% } %>
+          
+        </div>
+      </div>
+    </div>
+
+    <div class="ui text container">
+      <h1 class="ui inverted header">
+        About Page
+      </h1>
+      <h2>content soon come</h2>
+    </div>
+
+  </div>
+
+  <div class="ui container abcd">
+    
+    <div class="ui middle aligned center aligned grid">
+      
+      <div class="column">
+      
+        <h1>E-Mail</h1>
+        <p>email: grnwoodapp@gmail.com</p>
+        I'll have this all in a form in a while, I promise
+      </div>
+      
+    </div>
+  </div>  
+  
+</div>
+
+<% include partials/footer %>

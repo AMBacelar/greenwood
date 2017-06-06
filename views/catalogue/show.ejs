@@ -1,0 +1,129 @@
+<% include ../partials/header %>
+
+<body>
+    
+<!-- Following Menu -->
+<div class="ui large top fixed hidden menu">
+  <div class="ui container">
+    <a href="/" class="item">Home</a>
+    <a href="/catalogue" class="active item">The Catalogue</a>
+    <a href="../about" class="item">About</a>
+    <div class="right menu">
+      
+    <% if(!currentUser) { %>
+      
+      <div class="item">
+        <a href="/login" class="ui button">Log in</a>
+      </div>
+      <div class="item">
+        <a href="/login" class="ui primary button">Sign Up</a>
+      </div>
+      
+  <% } else { %>
+      <div class="item">
+        <a href="/user/<%= currentUser._id %>" class="ui button">logged in as <%= currentUser.username %></a>
+        <a href="/logout" class="ui primary button">Log Out</a>
+      </div>
+      
+    <% } %>
+    </div>
+  </div>
+</div>
+
+<!-- Sidebar Menu -->
+<div class="ui vertical inverted sidebar menu">
+  <a href="/" class="item">Home</a>
+  <a href="/catalogue" class="active item">The Catalogue</a>
+  <a href="../about" class="item">About</a>
+  <% if(!currentUser) { %>
+  <a href="/login" class="item">Login</a>
+  <a href="/login" class="item">Signup</a>
+  <% } else { %>
+  <a href="/user/<%= currentUser._id %>" class="item">Profile Page</a>
+  <a href="/logout" class="item">Log Out</a>
+    <% } %>
+  
+</div>
+
+
+<!-- Page Contents -->
+<div class="pusher">
+    <!-- menu and banner -->
+    <div class="ui inverted vertical masthead center aligned segment">
+
+    <div class="ui container">
+      <div class="ui large secondary inverted pointing menu">
+        <a class="toc item">
+          <i class="sidebar icon"></i>
+        </a>
+        <a href="/" class="item">Home</a>
+        <a href="/catalogue" class="active item">The Catalogue</a>
+        <a href="../about" class="item">About</a>
+        <div class="right item">
+          
+          <% if(!currentUser) { %>
+            <a href="/login" class="ui inverted button">Log in</a>
+            <a href="/register" class="ui inverted button">Sign Up</a>
+          <% } else { %>
+            <a href="/user/<%= currentUser._id %>" class="ui inverted button">logged in as <%= currentUser.username %></a>
+            <a href="/logout" class="ui inverted button">Log Out</a>
+          <% } %>
+          
+        </div>
+      </div>
+    </div>
+
+    <div class="ui text container">
+      <h1 class="ui inverted header">
+        Greenwood Catalogue
+      </h1>
+      <h2>This is where search and filter functions will go...</h2>
+      <a href="/catalogue" class="ui huge primary button">filter results <i class="right arrow icon"></i></a>
+    </div>
+
+  </div>
+
+<div class="ui container abcd">
+  <div class="ui three column grid">
+    
+    <div class="column">
+    
+        <h1><%=business.name%></h1>
+        
+        <img class="ui medium image" src="<%= business.image %>">
+        
+    </div>  
+    
+    <div class="column">
+    
+    <p><%= business.description %></p>
+    <p><a href="/user/<%= business.owner.id %>"><%= business.owner.username %></a></p>
+    <% for(var i=0; i<business.category.length; i++) { %>
+      <form method="get" action="/catalogue" class="inline">
+        <button type="submit" name="category[]" value="<%=business.category[i]%>" class="compact mini ui button">
+          <%=business.category[i]%>
+        </button>
+      </form>
+    <% }; %>
+    <p><%= business._id.getTimestamp() %></p>
+    <p><%= business.location %></p>
+    <p><%= business.phoneNumber %></p>
+    <p><%= business.email %></p>
+    <p><%= business.website %></p>
+    
+    
+    <% if(currentUser && business.owner.id.equals(currentUser._id)) { %>
+    
+    <a href="/catalogue/<%=business._id%>/edit" class="compact mini orange ui button">Edit</a>
+    
+      <form method="POST" action="/catalogue/<%=business._id%>?_method=DELETE" class="inline">
+        <button class="compact mini red ui button">Delete</button>
+      </form>
+    
+    <% } %>
+  
+    </div>
+  </div>  
+</div>
+
+<% include ../partials/footer %>

@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html>
+    <head>
+          <!-- Standard Meta -->
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+  
+  
+        <title>Greenwood</title>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/semantic-ui/2.2.10/semantic.min.css">
+        <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/semantic-ui/2.2.10/semantic.min.js"></script>
+        <script src="https://semantic-ui.com/dist/components/visibility.js"></script>
+        <script>
+    $(document)
+    .ready(function(){
+          $('.ui.rating')
+            .rating();
+    });
+   
+    </script>
+    <script>
+    $(document).ready(function(){
+        $('.special.cards .image').dimmer({
+          on: 'hover'
+    });
+    });
+    </script>
+    
+    <script>
+    $(document).ready(function(){
+        $('.ui.dropdown')
+        .dropdown()
+        ;
+        
+    });
+    </script>
+    <script>
+    $(document).ready(function(){
+        $('.ui.dropdown')
+        .dropdown({
+    maxSelections: 3
+  });
+        
+    });
+    </script>
+
+<style type="text/css">
+
+    <style type="text/css">
+    body {
+      background-color: #DADADA;
+    }
+    body > .grid {
+      height: 100%;
+    }
+    .image {
+      margin-top: -100px;
+    }
+    .column {
+      max-width: 450px;
+    }
+    
+    .ui.container {
+      padding: 0em 0em;
+    }
+    
+    .hidden.menu {
+      display: none;
+    }
+
+    .masthead.segment {
+      min-height: 500px;
+      padding: 1em 0em;
+    }
+    .masthead .logo.item img {
+      margin-right: 1em;
+    }
+    .masthead .ui.menu .ui.button {
+      margin-left: 0.5em;
+    }
+    .masthead h1.ui.header {
+      margin-top: 3em;
+      margin-bottom: 0em;
+      font-size: 4em;
+      font-weight: normal;
+    }
+    .masthead h2 {
+      font-size: 1.7em;
+      font-weight: normal;
+    }
+
+    .ui.vertical.stripe {
+      padding: 8em 0em;
+    }
+    .ui.vertical.stripe h3 {
+      font-size: 2em;
+    }
+    .ui.vertical.stripe .button + h3,
+    .ui.vertical.stripe p + h3 {
+      margin-top: 3em;
+    }
+    .ui.vertical.stripe .floated.image {
+      clear: both;
+    }
+    .ui.vertical.stripe p {
+      font-size: 1.33em;
+    }
+    .ui.vertical.stripe .horizontal.divider {
+      margin: 3em 0em;
+    }
+    .quote.stripe.segment {
+      padding: 0em;
+    }
+    .quote.stripe.segment .grid .column {
+      padding-top: 5em;
+      padding-bottom: 5em;
+    }
+    .abcd {
+      margin-top: 2em;
+      margin-bottom: 1em;
+    }
+
+    .footer.segment {
+      padding: 5em 0em;
+    }
+
+    .secondary.pointing.menu .toc.item {
+      display: none;
+    }
+
+    @media only screen and (max-width: 700px) {
+      .ui.fixed.menu {
+        display: none !important;
+      }
+      .secondary.pointing.menu .item,
+      .secondary.pointing.menu .menu {
+        display: none;
+      }
+      .secondary.pointing.menu .toc.item {
+        display: block;
+      }
+      .masthead.segment {
+        min-height: 350px;
+      }
+      .masthead h1.ui.header {
+        font-size: 2em;
+        margin-top: 1.5em;
+      }
+      .masthead h2 {
+        margin-top: 0.5em;
+        font-size: 1.5em;
+      }
+    }
+
+
+  </style>
+<script>
+  $(document)
+    .ready(function() {
+
+      // fix menu when passed
+      $('.masthead')
+        .visibility({
+          once: false,
+          onBottomPassed: function() {
+            $('.fixed.menu').transition('fade in');
+          },
+          onBottomPassedReverse: function() {
+            $('.fixed.menu').transition('fade out');
+          }
+        })
+      ;
+
+      // create sidebar and attach to menu open
+      $('.ui.sidebar')
+        .sidebar('attach events', '.toc.item')
+      ;
+
+    })
+  ;
+  </script>
+  
+  </head>
+   
+        
+
+
+<body>
+    
+<!-- Following Menu -->
+<div class="ui large top fixed hidden menu">
+  <div class="ui container">
+    <a href="/" class="item">Home</a>
+    <a href="/catalogue" class="active item">The Catalogue</a>
+    <a href="../about" class="item">About</a>
+    <div class="right menu">
+      
+    <% if(!currentUser) { %>
+      
+      <div class="item">
+        <a href="/login" class="ui button">Log in</a>
+      </div>
+      <div class="item">
+        <a href="/login" class="ui primary button">Sign Up</a>
+      </div>
+      
+  <% } else { %>
+      <div class="item">
+        <a href="/user/<%= currentUser._id %>" class="ui button">logged in as <%= currentUser.username %></a>
+        <a href="/logout" class="ui primary button">Log Out</a>
+      </div>
+      
+    <% } %>
+    </div>
+  </div>
+</div>
+
+<!-- Sidebar Menu -->
+<div class="ui vertical inverted sidebar menu">
+  <a href="/" class="item">Home</a>
+  <a href="/catalogue" class="active item">The Catalogue</a>
+  <a href="../about" class="item">About</a>
+  <% if(!currentUser) { %>
+  <a href="/login" class="item">Login</a>
+  <a href="/login" class="item">Signup</a>
+  <% } else { %>
+  <a href="/user/<%= currentUser._id %>" class="item">Profile Page</a>
+  <a href="/logout" class="item">Log Out</a>
+    <% } %>
+  
+</div>
+
+
+<!-- Page Contents -->
+<div class="pusher">
+    <!-- menu and banner -->
+    <div class="ui inverted vertical masthead center aligned segment">
+
+    <div class="ui container">
+      <div class="ui large secondary inverted pointing menu">
+        <a class="toc item">
+          <i class="sidebar icon"></i>
+        </a>
+        <a href="/" class="item">Home</a>
+        <a href="/catalogue" class="active item">The Catalogue</a>
+        <a href="../about" class="item">About</a>
+        <div class="right item">
+          
+          <% if(!currentUser) { %>
+            <a href="/login" class="ui inverted button">Log in</a>
+            <a href="/register" class="ui inverted button">Sign Up</a>
+          <% } else { %>
+            <a href="/user/<%= currentUser._id %>" class="ui inverted button">logged in as <%= currentUser.username %></a>
+            <a href="/logout" class="ui inverted button">Log Out</a>
+          <% } %>
+          
+        </div>
+      </div>
+    </div>
+    
+    
+
+    <div class="ui text container">
+      <h1 class="ui inverted header">
+        Greenwood
+      </h1>
+      <h2>Growing a community with deep roots.</h2>
+      <a href="/catalogue" class="ui huge primary button">The Catalogue <i class="right arrow icon"></i></a>
+    </div>
+
+  </div>
+
+
+
+<div class="ui middle aligned center aligned grid">
+  <div class="column">
+    <h2 class="ui image header">
+      <img src="assets/images/logo.png" class="image">
+      <div class="content">
+        Edit <%=catalogueID.name%>
+      </div>
+    </h2>
+    <form class="ui large form" action="/catalogue/<%= catalogueID._id %>?_method=PUT" method="POST">
+      <div class="ui stacked segment">
+        <div class="field">
+            <label>Business Name</label>
+          <div class="ui left icon input">
+            <i class="trademark icon"></i>
+            <input type="text" name="name" placeholder="Business Name" value="<%=catalogueID.name%>">
+          </div>
+        </div>
+        <div class="field">
+            <label>Logo Image URL</label>
+          <div class="ui left icon input">
+            <i class="image icon"></i>
+            <input type="text" name="image" placeholder="Logo Image URL" value="<%=catalogueID.image%>">
+          </div>
+        </div>
+        <div class="field">
+          <label>Business Categories</label>
+          <select multiple="multiple" name="category[]" class="ui fluid normal dropdown field" value="<%=catalogueID.category%>">
+          <option value="Agencies">Agencies</option>
+          <option value="Model Agency">Model Agency</option>
+          <option value="Music Agency">Music Agency</option>
+          <option value="Talent Agency">Talent Agency</option>
+          <option value="Author">Author</option>
+          <option value="Barbers">Barbers</option>
+          <option value="Bars">Bars</option>
+          <option value="Car Rental">Car Rental</option>
+          <option value="Career Development">Career Development</option>
+          <option value="Employability">Employability</option>
+          <option value="CV Writing">CV Writing</option>
+          <option value="Internships">Internships</option>
+          <option value="Jobs">Jobs</option>
+          <option value="Work Experience">Work Experience</option>
+          <option value="Workshops">Workshops</option>
+          <option value="Charity">Charity</option>
+          <option value="Volunteering">Volunteering</option>
+          <option value="Cleaning Services">Cleaning Services</option>
+          <option value="Creative Arts">Creative Arts</option>
+          <option value="Delivery Services">Delivery Services</option>
+          <option value="Education">Education</option>
+          <option value="Tutoring">Tutoring</option>
+          <option value="Workshops">Workshops</option>
+          <option value="Electrical Repairs">Electrical Repairs</option>
+          <option value="Event Hire">Event Hire</option>
+          <option value="Event Planning">Event Planning</option>
+          <option value="Events">Events</option>
+          <option value="Dating">Dating</option>
+          <option value="Event Management">Event Management</option>
+          <option value="Fashion Shows">Fashion Shows</option>
+          <option value="Music">Music</option>
+          <option value="Live Music">Live Music</option>
+          <option value="Networking">Networking</option>
+          <option value="Party Services">Party Services</option>
+          <option value="Children's">Children's</option>
+          <option value="Pamper Parties">Pamper Parties</option>
+          <option value="Social">Social</option>
+          <option value="Spoken Word">Spoken Word</option>
+          <option value="Fashion & Textiles">Fashion & Textiles</option>
+          <option value="Accessories">Accessories</option>
+          <option value="Clothing">Clothing</option>
+          <option value="Womenswear">Womenswear</option>
+          <option value="Hosiery">Hosiery</option>
+          <option value="Lingerie & Nightwear">Lingerie & Nightwear</option>
+          <option value="Menswear">Menswear</option>
+          <option value="Children's clothes">Children's clothes</option>
+          <option value="Footwear">Footwear</option>
+          <option value="Food & Drink">Food & Drink</option>
+          <option value="Cakes">Cakes</option>
+          <option value="Confectionery">Confectionery</option>
+          <option value="Catering">Catering</option>
+          <option value="Desserts">Desserts</option>
+          <option value="Halal">Halal</option>
+          <option value="Restaurant">Restaurant</option>
+          <option value="Fragrance">Fragrance</option>
+          <option value="Graphic Design">Graphic Design</option>
+          <option value="Hair & Beauty">Hair & Beauty</option>
+          <option value="Beauticians">Beauticians</option>
+          <option value="Beauty Boxes">Beauty Boxes</option>
+          <option value="Beauty Products">Beauty Products</option>
+          <option value="Beauty Therapists">Beauty Therapists</option>
+          <option value="Eyelash Extensions">Eyelash Extensions</option>
+          <option value="Eyelash Stockists">Eyelash Stockists</option>
+          <option value="Hair Care">Hair Care</option>
+          <option value="Hair products">Hair products</option>
+          <option value="Hair Stockist">Hair Stockist</option>
+          <option value="Hair Stylists">Hair Stylists</option>
+          <option value="Hair Workshops">Hair Workshops</option>
+          <option value="Styling">Styling</option>
+          <option value="Tutorials">Tutorials</option>
+          <option value="Make up stockists">Make up stockists</option>
+          <option value="Men's Grooming">Men's Grooming</option>
+          <option value="MUA">MUA</option>
+          <option value="Nail Services">Nail Services</option>
+          <option value="Skin Care">Skin Care</option>
+          <option value="Spa Treatments">Spa Treatments</option>
+          <option value="Handymen Services">Handymen Services</option>
+          <option value="Health & Fitness">Health & Fitness</option>
+          <option value="Health & Well-being">Health & Well-being</option>
+          <option value="Massage Therapy">Massage Therapy</option>
+          <option value="Mental Health">Mental Health</option>
+          <option value="Psychotherapy">Psychotherapy</option>
+          <option value="Salons">Salons</option>
+          <option value="Spa Treatments">Spa Treatments</option>
+          <option value="IT Services">IT Services</option>
+          <option value="Languages">Languages</option>
+          <option value="Translator">Translator</option>
+          <option value="Interpreter">Interpreter</option>
+          <option value="Man & Van">Man & Van</option>
+          <option value="Management">Management</option>
+          <option value="ManufacturingDistribution">Manufacturing/Distribution</option>
+          <option value="Marketing">Marketing</option>
+          <option value="Brand Development Marketing">Brand Development Marketing</option>
+          <option value="Digital Marketing">Digital Marketing</option>
+          <option value="Marketing Agency">Marketing Agency</option>
+          <option value="Mechanical Engineering">Mechanical Engineering</option>
+          <option value="Media">Media</option>
+          <option value="Advertising">Advertising</option>
+          <option value="Public Relations">Public Relations</option>
+          <option value="Personal Trainers">Personal Trainers</option>
+          <option value="Photography">Photography</option>
+          <option value="Social Photography Services">Social Photography Services</option>
+          <option value="Photo Booth">Photo Booth</option>
+          <option value="Social Pod">Social Pod</option>
+          <option value="Printing">Printing</option>
+          <option value="Promotions">Promotions</option>
+          <option value="Publishing Houses">Publishing Houses</option>
+          <option value="Removal Services">Removal Services</option>
+          <option value="Repairs">Repairs</option>
+          <option value="Shop">Shop</option>
+          <option value="Wholesalers">Wholesalers</option>
+          <option value="Specialist Services">Specialist Services</option>
+          <option value="Childcare">Childcare</option>
+          <option value="Gifts">Gifts</option>
+          <option value="Property">Property</option>
+          <option value="Tattoo Artist">Tattoo Artist</option>
+          <option value="Travel">Travel</option>
+          <option value="Visual Media">Visual Media</option>
+          <option value="Web Designers">Web Designers</option>
+          <option value="Web Developers">Web Developers</option>
+          <option value="Wedding Planners">Wedding Planners</option>
+          </select>
+        </div>
+        <div class="field">
+            <label>Location</label>
+          <div class="ui left icon input">
+            <i class="marker icon"></i>
+            <input type="text" name="_location" placeholder="Location" value="<%=catalogueID.location%>">
+          </div>
+        </div>
+        <!--<div class="field">-->
+        <!--  <div class="ui left icon input">-->
+        <!--    <i class="user icon"></i>-->
+        <!--    <input type="text" name="owner" placeholder="Owner Name - going to be your username">-->
+        <!--  </div>-->
+        <!--</div>-->
+        <div class="field">
+            <label>Contact Number</label>
+          <div class="ui left icon input">
+            <i class="call icon"></i>
+            <input type="text" name="phoneNumber" placeholder="Contact Number" value="<%=catalogueID.phoneNumber%>">
+          </div>
+        </div>
+        <div class="field">
+            <label>E-mail Address</label>
+          <div class="ui left icon input">
+            <i class="mail outline icon"></i>
+            <input type="text" name="email" placeholder="E-Mail Address" value="<%=catalogueID.email%>">
+          </div>
+        </div>
+        <div class="field">
+            <label>Website</label>
+          <div class="ui left icon input">
+            <i class="arrow right icon"></i>
+            <input type="text" name="website" placeholder="website" value="<%=catalogueID.website%>">
+          </div>
+        </div>
+        <div class="field">
+            <label>Description</label>
+          <textarea rows="2" name="_description" placeholder="Description"><%=catalogueID.description%></textarea>
+        </div>
+        <button class="ui fluid large submit button">Submit</button>
+      </div>
+
+      <div class="ui error message"></div>
+
+    </form>
+
+  </div>
+</div>
+
+
+
+<% include ../partials/footer %>

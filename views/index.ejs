@@ -1,0 +1,229 @@
+<% include partials/header %>
+
+<body>
+    
+<!-- Following Menu -->
+<div class="ui large top fixed hidden menu">
+  <div class="ui container">
+    <a href="/" class="item">Home</a>
+    <a href="/catalogue" class="active item">The Catalogue</a>
+    <a href="../about" class="item">About</a>
+    <div class="right menu">
+      
+    <% if(!currentUser) { %>
+      
+      <div class="item">
+        <a href="/login" class="ui button">Log in</a>
+      </div>
+      <div class="item">
+        <a href="/login" class="ui primary button">Sign Up</a>
+      </div>
+      
+  <% } else { %>
+      <div class="item">
+        <a href="/user/<%= currentUser._id %>" class="ui button">logged in as <%= currentUser.username %></a>
+        <a href="/logout" class="ui primary button">Log Out</a>
+      </div>
+      
+    <% } %>
+    </div>
+  </div>
+</div>
+
+<!-- Sidebar Menu -->
+<div class="ui vertical inverted sidebar menu">
+  <a href="/" class="item">Home</a>
+  <a href="/catalogue" class="active item">The Catalogue</a>
+  <a href="../about" class="item">About</a>
+  <% if(!currentUser) { %>
+  <a href="/login" class="item">Login</a>
+  <a href="/login" class="item">Signup</a>
+  <% } else { %>
+  <a href="/user/<%= currentUser._id %>" class="item">Profile Page</a>
+  <a href="/logout" class="item">Log Out</a>
+    <% } %>
+  
+</div>
+
+
+<!-- Page Contents -->
+<div class="pusher">
+    <!-- menu and banner -->
+    <div class="ui inverted vertical masthead center aligned segment index">
+
+    <div class="ui container">
+      <div class="ui large secondary inverted pointing menu">
+        <a class="toc item">
+          <i class="sidebar icon"></i>
+        </a>
+        <a href="/" class="item">Home</a>
+        <a href="/catalogue" class="active item">The Catalogue</a>
+        <a href="../about" class="item">About</a>
+        <div class="right item">
+          
+          <% if(!currentUser) { %>
+            <a href="/login" class="ui inverted button">Log in</a>
+            <a href="/register" class="ui inverted button">Sign Up</a>
+          <% } else { %>
+            <a href="/user/<%= currentUser._id %>" class="ui inverted button">logged in as <%= currentUser.username %></a>
+            <a href="/logout" class="ui inverted button">Log Out</a>
+          <% } %>
+          
+        </div>
+      </div>
+    </div>
+    
+
+    <div class="ui text container">
+      <h1 class="ui inverted header">
+        Greenwood
+      </h1>
+      <h2>Growing a community with deep roots.</h2>
+      <a href="/catalogue" class="ui huge inverted button">Take a Look <i class="right arrow icon"></i></a>
+    </div>
+
+  </div>
+      
+    <!-- Nearby Businesses -->
+    <!--<div class="ui container mobile only grid">-->
+    
+    <!--    <div class="ui container abcd">-->
+    <!--    <h2>Nearby Businesses - mobile only</h2>-->
+    <!--</div>-->
+    
+    <!--    <div class="ui five special doubling cards ">-->
+            
+    <!--       <% for (i = 0; i < 4; i++) { %>-->
+           
+           
+    <!--            <div class="card">-->
+    <!--                <div class="blurring dimmable image">-->
+    <!--                  <div class="ui dimmer">-->
+    <!--                    <div class="content">-->
+    <!--                      <div class="description">-->
+    <!--                        <a class="header">Team AMB</a>-->
+    <!--                        <span class="date">Create in April 2017</span>-->
+    <!--                        <a>Graphics Design</a>-->
+    <!--                        <p>Distance: 0.1 miles</p>-->
+    <!--                      </div>-->
+    <!--                    </div>-->
+    <!--                  </div>-->
+    <!--                  <img src=https://scontent-lhr3-1.cdninstagram.com/t51.2885-15/s750x750/sh0.08/e35/17125592_1393390244045207_1427341984648921088_n.jpg>-->
+    <!--                </div>-->
+    <!--                <div class="extra">-->
+    <!--                  Rating:-->
+    <!--                  <div class="ui star rating" data-rating="4" data-max-rating="5"></div>-->
+    <!--                </div>-->
+    <!--              </div>-->
+    <!--     <% } %>-->
+            
+              
+    <!--        </div>-->
+            
+    <!--  <div class="ui centered row">-->
+    <!--    <a href="#" class="ui huge primary button">Businesses near me <i class="marker icon"></i></a>-->
+    <!--  </div>-->
+
+    <!--</div>-->
+    
+    
+    <!-- FeaturedBusinesses -->
+    <!--<div class="ui container computer only grid">-->
+    <!--    <div class="ui container abcd">-->
+    <!--    <h2>Featured Businesses - for desktop only</h2>-->
+    <!--</div>-->
+    
+    <!--    <div class="ui five special doubling cards ">-->
+            
+    <!--       <% for (i = 0; i < 5; i++) { %>-->
+           
+           
+    <!--            <div class="card">-->
+    <!--                <div class="blurring dimmable image">-->
+    <!--                  <div class="ui dimmer">-->
+    <!--                    <div class="content">-->
+    <!--                      <div class="description">-->
+    <!--                        Adi is a North London web Dev.-->
+    <!--                      </div>-->
+    <!--                    </div>-->
+    <!--                  </div>-->
+    <!--                  <img src=https://scontent-lhr3-1.cdninstagram.com/t51.2885-15/s750x750/sh0.08/e35/17125592_1393390244045207_1427341984648921088_n.jpg>-->
+    <!--                </div>-->
+    <!--                <div class="content">-->
+    <!--                  <a class="header">Team AMB</a>-->
+    <!--                  <div class="meta">-->
+    <!--                    <span class="date">Create in April 2017</span>-->
+    <!--                    <a>Graphics Design</a>-->
+    <!--                  </div>-->
+    <!--                </div>-->
+    <!--                <div class="extra">-->
+    <!--                  Rating:-->
+    <!--                  <div class="ui star rating" data-rating="4" data-max-rating="5"></div>-->
+    <!--                </div>-->
+    <!--              </div>-->
+    <!--     <% } %>-->
+            
+              
+    <!--        </div>-->
+
+    <!--</div>-->
+    
+
+    <div class="ui vertical stripe segment">
+    <div class="ui middle aligned stackable grid container">
+      <div class="row">
+        <div class="eight wide column">
+          <h3 class="ui header">We Help Companies and Companions</h3>
+          <p>We can give your company superpowers to do things that they never thought possible. Let us delight your customers and empower your needs...through pure data analytics.</p>
+          <h3 class="ui header">We Make Bananas That Can Dance</h3>
+          <p>Yes that's right, you thought it was the stuff of dreams, but even bananas can be bioengineered.</p>
+        </div>
+        <div class="six wide right floated column">
+          <img src="https://i.imgur.com/VBZ5yWA.png" class="ui large bordered rounded image">
+        </div>
+      </div>
+      <div class="row">
+        <div class="center aligned column">
+          <a class="ui huge button">Check Them Out</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+    <div class="ui vertical stripe quote segment">
+    <div class="ui equal width stackable internally celled grid">
+      <div class="center aligned row">
+        <div class="column">
+          <h3>"What a Company"</h3>
+          <p>That is what they all say about us</p>
+        </div>
+        <div class="column">
+          <h3>"I shouldn't have gone with their competitor."</h3>
+          <p>
+            <img src="https://semantic-ui.com/images/avatar2/large/matthew.png" class="ui avatar image"> <b>Nan</b> Chief Fun Officer Acme Toys
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+    <div class="ui vertical stripe segment">
+    <div class="ui text container">
+      <h3 class="ui header">Breaking The Grid, Grabs Your Attention</h3>
+      <p>Instead of focusing on content creation and hard work, we have learned how to master the art of doing nothing by providing massive amounts of whitespace and generic content that can seem massive, monolithic and worth your attention.</p>
+      <a class="ui large button">Read More</a>
+      <h4 class="ui horizontal header divider">
+        <a href="#">Case Studies</a>
+      </h4>
+      <h3 class="ui header">Did We Tell You About Our Bananas?</h3>
+      <p>Yes I know you probably disregarded the earlier boasts as non-sequitur filler content, but its really true. It took years of gene splicing and combinatory DNA research, but our bananas can really dance.</p>
+      <a class="ui large button">I'm Still Quite Interested</a>
+    </div>
+  </div>
+
+
+
+</body>
+
+<% include partials/footer %>
