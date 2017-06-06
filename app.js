@@ -13,7 +13,8 @@ var     businessRoutes      = require("./routes/catalogue"),
         userRoutes          = require("./routes/user"),
         indexRoutes         = require("./routes/index");
 
-mongoose.connect("mongodb://localhost/Greenwood");
+// mongoose.connect("mongodb://localhost/Greenwood");
+mongoose.connect("mongodb://ambacelar:1afaammjdb@ds113282.mlab.com:13282/greenwood");
 app.use(bodyParser.urlencoded({extended: true}));
 app.set("view engine", "ejs");
 app.use(express.static(__dirname + "/public"));
