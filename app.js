@@ -13,7 +13,9 @@ var     businessRoutes      = require("./routes/catalogue"),
         userRoutes          = require("./routes/user"),
         indexRoutes         = require("./routes/index");
 
+console.log(process.env.DATABASEURL);
 mongoose.connect(process.env.DATABASEURL);
+
 app.use(bodyParser.urlencoded({extended: true}));
 app.set("view engine", "ejs");
 app.use(express.static(__dirname + "/public"));
