@@ -77,7 +77,7 @@ router.post("/", isLoggedIn, function(req, res) {
             console.log(err);
         } else {
             // if successful, redirect back to catalogue page
-            res.redirect("catalogue/catalogue");
+            res.redirect("/catalogue");
         }
     });
 });
