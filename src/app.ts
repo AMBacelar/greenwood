@@ -1,13 +1,19 @@
 import express, { Request, Response } from 'express';
-import passport from 'passport';
-import { Strategy as GoogleStrategy } from 'passport-google-oauth20';
+import mongoose from 'mongoose';
+
+import './env';
+import './services/passport';
+import authRoutes from './routes/authRoutes';
+
+mongoose.connect(process.env.MONGODB_CONNECTION_URI);
+
 const app = express();
 
-// passport.use(new GoogleStrategy());
+app.get('/', (req: Request, res: Response) =>
+  res.send('authenticate with "/auth/google" route')
+);
 
-app.get('/', (req: Request, res: Response) => {
-  res.send({ bye: 'buddy' });
-});
+app.use(authRoutes);
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () =>
