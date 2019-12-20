@@ -1,4 +1,4 @@
-var catList = [
+const catList = [
   'Agencies',
   'Model Agency',
   'Music Agency',

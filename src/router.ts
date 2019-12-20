@@ -1,5 +1,6 @@
 import { Router } from 'express';
 import authRoutes from './routes/authRoutes';
+/* eslint-disable new-cap */
 const router = Router();
 
 router.use(authRoutes);
